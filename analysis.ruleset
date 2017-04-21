@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="SenseNet Common Diagnostics" Description="This file contains diagnostic settings used by all SenseNet projects. Projects that need specific settings should have their own rule set files that Include this one, and then make the necessary adjustments." ToolsVersion="15.0">
+<RuleSet Name="Hark Common Diagnostics" Description="This file contains diagnostic settings used by all Hark projects. Projects that need specific settings should have their own rule set files that Include this one, and then make the necessary adjustments." ToolsVersion="15.0">
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
     <Rule Id="AD0001" Action="None" />
   </Rules>
