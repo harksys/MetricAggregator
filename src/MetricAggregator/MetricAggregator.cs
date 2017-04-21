@@ -1,5 +1,5 @@
-﻿// <copyright file="MetricAggregator.cs" company="HARK">
-// Copyright (c) HARK. All rights reserved.
+﻿// <copyright file="MetricAggregator.cs" company="Hark.">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace MetricAggregator
@@ -12,6 +12,12 @@ namespace MetricAggregator
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.DataContracts;
 
+    /// <summary>
+    /// Metric Aggregator.
+    /// </summary>
+    /// <remarks>
+    /// Application Insights will eventually have this built in.
+    /// </remarks>
     public class MetricAggregator : IDisposable
     {
         /// <summary>
@@ -35,21 +41,22 @@ namespace MetricAggregator
 
             this.UseAverage = useAverage;
 
-            Task.Factory.StartNew(async () =>
-            {
-                while (this.Running)
+            Task.Factory.StartNew(
+                async () =>
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(IntervalSeconds));
-
-                    var metric = this.Aggregate();
-                    if (metric == null)
+                    while (this.Running)
                     {
-                        continue;
-                    }
+                        await Task.Delay(TimeSpan.FromSeconds(IntervalSeconds));
 
-                    this.TelemetryClient.TrackMetric(metric);
-                }
-            }, TaskCreationOptions.LongRunning);
+                        var metric = this.Aggregate();
+                        if (metric == null)
+                        {
+                            continue;
+                        }
+
+                        this.TelemetryClient.TrackMetric(metric);
+                    }
+                }, TaskCreationOptions.LongRunning);
         }
 
         private TelemetryClient TelemetryClient { get; } = new TelemetryClient();
@@ -62,17 +69,22 @@ namespace MetricAggregator
 
         private bool UseAverage { get; }
 
-        public void Dispose()
-        {
-            this.Running = false;
-        }
-
+        /// <summary>
+        /// Track Metric.
+        /// </summary>
+        /// <param name="value">The Metric Value.</param>
         public void TrackMetric(double value)
         {
             lock (this)
             {
                 this.Telemetry.Add(value);
             }
+        }
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            this.Running = false;
         }
 
         private MetricTelemetry Aggregate()
@@ -98,7 +110,7 @@ namespace MetricAggregator
                     Sum =
                         this.UseAverage
                             ? mean
-                            : this.Telemetry.Count
+                            : this.Telemetry.Count,
                 };
 
                 this.Telemetry.Clear();

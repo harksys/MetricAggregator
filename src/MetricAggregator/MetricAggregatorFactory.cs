@@ -1,5 +1,12 @@
-﻿namespace MetricAggregator
+﻿// <copyright file="MetricAggregatorFactory.cs" company="Hark.">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace MetricAggregator
 {
+    /// <summary>
+    /// Metric Aggregator Factory.
+    /// </summary>
     public static class MetricAggregatorFactory
     {
         /// <summary>
