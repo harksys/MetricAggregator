@@ -4,7 +4,7 @@ Metric Aggerator gives you a convenient way to send metrics while reducing bandw
 
 It aggregates your metrics in your app, sending the aggregated statistics to the portal at intervals of one minute.
 
-When dealing with systems that perform many operations per minute, maintaining visible telemetry and sending individual metrics up to  application insights can be costly on your bandwidth and ultiamtely your bill.
+When dealing with systems that perform many operations per minute, maintaining visible telemetry and sending individual metrics up to  application insights can be costly on your bandwidth and ultimately your bill.
 
 Aggregation of metrics is a useful way to maintain in-depth visibility in an efficient fashion and the Metric Aggregator does this for you. 
 
